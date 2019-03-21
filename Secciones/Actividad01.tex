@@ -1,45 +1,112 @@
-\section{Patrones de Diseño (Facade)} 
+\section{Patrones de Diseño Composite} 
+
 \textbf{}\\
+El patrón de diseño Composite nos sirve para construir estructuras complejas partiendo de otras estructuras mucho más simples, dicho de otra manera, podemos crear estructuras compuestas las cuales están conformadas por otras estructuras más pequeñas.
+Para comprender mejor como funciona este patrón imaginemos una casa de ladrillos, las casas como tal no están hecha de una pieza, si observamos las paredes estas esta echas de pequeñas piezas llamadas ladrillos, entonces, el conjunto de estos ladrillos crea paredes, y un conjunto de paredes crean una casa. este ejemplo puede ser aplicado al patrón Composite, y no digo que vayamos a crear una casa con este patrón, sino más bien nos da una idea de cómo trabaja para poder utilizarlo con otros ejemplos.
+
 \begin{flushleft}
-patrones de diseño se consideran una de las herramientas más valiosas para producir diseños de calidad y una técnica de propósito general para mejorar un diseño es identificar todas las realizaciones de patrones y aplicar reglas conocidas para mejorarlos.
 
+\begin{center}
+	\includegraphics[width=10cm]{./Imagenes/composite1} 
+	\end{center}
 \begin{itemize}
-	\item Patrones de Diseño
-	\\IDEA es un asistente de diseño interactivo para arquitectos de software destinado a automatizar la tarea de encontrar y mejorar las realizaciones de los patrones de diseño.
+\textbf{Uso}
+
+El patrón Composite sirve para construir objetos complejos a partir de otros más simples y similares entre sí, gracias a la composición recursiva y a una estructura en forma de árbol.  Esto simplifica el tratamiento de los objetos creados, ya que al poseer todos ellos una interfaz común, se tratan todos de la misma manera. Dependiendo de la implementación, pueden aplicarse procedimientos al total o una de las partes de la estructura compuesta (todo o parte) como si de un nodo final se tratara, aunque dicha parte esté compuesta a su vez de muchas otras.
+
+\textbf{}\\
+\textbf{Aplicación}
 
 
-	
+Usar el patrón COMPOSITE cuando:
 
 
-	\item ¿Qué es una fachada o facade en inglés?
-	\\ Es un patrón de diseño que nos permite simplificar el interface de comunicación entre dos objetos.
-	\begin{center}
-	\includegraphics[width=10cm]{./Imagenes/1} 
-	\end{center}
-
-	
-	\begin{center}
-	\includegraphics[width=10cm]{./Imagenes/2} 
-	\end{center}
-
-
-Busca simplificar el sistema, desde el punto de vista del cliente, proporcionando una interfaz unificada para un conjunto de subsistemas, definiendo una interfaz de nivel más alto. Esto hace que el sistema sea más fácil de usar.
-
-Este patrón busca reducir al mínimo la comunicación y dependencias entre subsistemas. Para ello, utilizaremos una fachada, simplificando la complejidad al cliente. El cliente debería acceder a un subsistema a través del Facade. De esta manera, se estructura un entorno de programación más sencillo, al menos desde el punto de vista del cliente (por ello se llama "fachada").
-
-
-         \item ¿Se debe utilizar cuando?
-	\\ Se quiera proporcionar una interfaz sencilla para un subsistema complejo.
-             Se quiera desacoplar un subsistema de sus clientes y de otros subsistemas, haciéndolo más independiente y portable.
-            Se quiera dividir los sistemas en niveles: las fachadas serían el punto de entrada a cada nivel. Facade puede ser utilizado a nivel aplicación.
-	\begin{center}
-	\includegraphics[width=10cm]{./Imagenes/3} 
-	\end{center}
-
-Los clientes se comunican con el subsistema a través de la facade, que reenvía las peticiones a los objetos del subsistema apropiados y puede realizar también algún trabajo de traducción. Los clientes que usan la facade no necesitan acceder directamente a los objetos del sistema.	
-	
+  \item Se quiere representar jerarquías de objetos todo-parte.
+  \item Se quiere ser capaz de ignorar la diferencia entre objetos individuales y composiciones de objetos.  Los clientes tratarán a todos los objetos de la estructura compuesta uniformemente.
 
 \end{itemize} 
+
+\textbf{}\\
+\textbf{}\\
+\textbf{}\\
+\textbf{}\\
+\textbf{}\\
+\textbf{}\\
+\textbf{Estructura}
+
+\textbf{}\\ 
+\textbf{}\\ 
+
+\begin{center}
+	\includegraphics[width=10cm]{./Imagenes/composite2} 
+	\end{center}
+
+\textbf{Participantes}
+
+El patrón Composite requiere mínimo de tres componentes para poder existir los cuales son Componente, Leaf o Rama y Composite.
+
+\begin{enumerate}[a)]
+        \item \textbf{ Component (Grafico)}
+Generalmente es una interface o clase abstracta la cual tiene las operaciones mínimas que serán utilizadas, este componente deberá ser extendido por los otros dos componentes Leaf y Composite. En nuestro ejemplo esto podría representar de forma abstracta un ladrillo o toda la casa (Mas adelante comprenderemos porque)
+
+        \item \textbf{ Leaf o Rama (Línea, Rectángulo, Texto)}
+El leaf u hoja representa la parte más simple o pequeña de toda la estructura y este extiende o hereda de Component. En nuestro ejemplo, este representaría un ladrillo de nuestra casa.
+
+	\item \textbf{Composite (Dibujo)}
+Aquí es donde está la magia de este patrón, ya que el composite es una estructura conformada por otros Composite y Leaf, los Composite tiene los métodos add  (añadir) y remove (remover) los cuales nos permiten agregar objetos de tipo Component, Sin embargo, el Componente es por lo general un Interface o Clase abstracta  por lo que se puede agregar objetos de tipo Composite o Leaf.   Desde el punto de vista del ejemplo de la casa el Composite podría representar un conjunto de ladrillos o la casa completa, Esto desde luego sería agregando varias Ladrillo(Leaf) al Composite para crear una Pared.
+
+	\item \textbf{ Client}
+Es la entidad que hará uso del objeto compuesto.
+    \end{enumerate}
+
+\textbf{}\\ 
+\textbf{}\\ 
+\textbf{}\\ 
+\textbf{}\\ 
+\textbf{}\\ 
+\textbf{}\\ 
+\textbf{}\\ 
+\textbf{}\\ 
+\textbf{}\\ 
+\textbf{EJEMPLO DE ESTUDIO DEL PATRON COMPOSITE}
+Imaginemos un sistema de puntos de venta, en el cual se le pueden vender al cliente una serie de productos, estos productos pueden ser productos simples (Leaf) o paquetes (Composite).  El sistema permitirá crear “Ordenes de Ventas”, las cuales están compuestas por 1 o muchos productos.
+
+\begin{center}
+	\includegraphics[width=10cm]{./Imagenes/composite3} 
+	\end{center}
+
+En la imagen se muestra de forma gráfica cómo está compuesto un paquete.  Los paquetes están creados a partir de un conjunto de productos simples y otros paquetes por lo que el precio de un paquete está calculado por el precio de sus hijos de forma recursiva.  Muestra la estructura de una forma conceptual, sin embargo, la estructura es un poco más compleja, ya que está formado por una estructura de dato llamado “Arbol”
+
+\begin{center}
+	\includegraphics[width=10cm]{./Imagenes/composite4} 
+	\end{center}
+
+Esta imagen muestra un solo paquete, está formado de otros productos, simples y compuestos, un compuesto sería otro paquete, el cual tiene dentro más productos simples y como se vio en la figura anterior, el precio de un paquete es calculado por el precio de todos los hijos de forma recursiva.
+
+\textbf{}\\ 
+\textbf{}\\
+\textbf{}\\
+\textbf{}\\
+\textbf{}\\
+\textbf{}\\
+
+\textbf{CONCLUSION}
+
+\begin{itemize}
+\item Define jerarquías de clases hechas de objetos simples y compuestos. 
+\item Si el código cliente espera un objeto simple, puede recibir también uno compuesto 
+\item Puede hacer el diseño demasiado general. Es complicado restringir el tipo de componentes de un composite.
+\item Un paquete es producto compuesto de varios productos simples y otros paquetes.
+\item Simplifica el cliente.  Los paquetes y productos simples deberán ser tratados de la misma forma, por lo que deberán tener un padre en común.
+\item El precio de un paquete es la suma de todos los productos simples que contenga.
+\item El sistema deberá mostrar el total de la Orden y los productos que contiene.
+\item Facilita la incorporación de nuevos tipos de componentes
+
+
+\end{itemize} 
+
+
+
 
 
 \end{flushleft}
